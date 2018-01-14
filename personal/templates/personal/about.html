@@ -1,0 +1,8 @@
+{% extends "personal/base.html" %}
+{% block head_title %} About Mehvar {% endblock %}
+
+{% block content %}
+	{% for c in content %}
+		<p>{{c}}</p>
+	{% endfor %}
+{% endblock %}

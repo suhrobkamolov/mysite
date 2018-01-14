@@ -1,0 +1,24 @@
+{% extends 'personal/base.html' %}
+{% block head_title %} Contact us {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <style>
+                h1{color: #ffede8;}
+                form{color: #0db103;}
+                p{color: #0db103;}
+            </style>
+            <h1> {{ title }}</h1>
+            {% if confirm_message %}
+                <p>{{ confirm_message }}</p>
+            {% endif %}
+            {% if form %}
+                <form method="POST" action=""> {% csrf_token %}
+                    {{ form|crispy }}
+                    <input class="btn btn_default" type="submit" value="submit form" />
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends "personal/base.html" %}
+{% block content %}
+    {% load staticfiles %}
+
+    {# offer section #}
+    <section id="offer">
+    <!-- The offer section displays a banner text for promotions -->
+    <h2>OFFER 50%</h2>
+    <p>REALLY AWESOME DISCOUNTS THIS JULY</p>
+    </section>
+    {# offer section end #}
+
+    {# body #}
+    <div id="content">
+    <section class="sidebar">
+        <!-- This adds a sidebar with 1 searchbox,2 menusets, each with 4 links -->
+        <input type="text"  id="search" value="search">
+        <div id="menubar">
+            <nav class="menu">
+                <h2>Brands </h2>
+                <hr>
+                <ul>
+                    <!-- List of links under menuset 1 -->
+                    <li><a href="#" title="Link">Link 1</a></li>
+                    <li><a href="#" title="Link">Link 2</a></li>
+                    <li><a href="#" title="Link">Link 3</a></li>
+                    <li class="notimp"><!-- notimp class is applied to remove this link from the tablet and phone views --><a href="#"  title="Link">Link 4</a></li>
+                </ul>
+            </nav>
+            <nav class="menu">
+                <h2>Category </h2>
+                <!-- Title for menuset 2 -->
+                <hr>
+                <ul>
+                    <!--List of links under menuset 2 -->
+                    <li><a href="#" title="Link">Link 1</a></li>
+                    <li><a href="#" title="Link">Link 2</a></li>
+                    <li><a href="#" title="Link">Link 3</a></li>
+                    <li class="notimp"><!-- notimp class is applied to remove this link from the tablet and phone views --><a href="#" title="Link">Link 4</a></li>
+                </ul>
+            </nav>
+            <nav class="menu">
+                <h2>Usage Area </h2>
+                <!-- Title for menuset 2 -->
+                <hr>
+                <ul>
+                    <!--List of links under menuset 2 -->
+                    <li><a href="#" title="Link">Link 1</a></li>
+                    <li><a href="#" title="Link">Link 2</a></li>
+                    <li><a href="#" title="Link">Link 3</a></li>
+                    <li class="notimp"><!-- notimp class is applied to remove this link from the tablet and phone views --><a href="#" title="Link">Link 4</a></li>
+                </ul>
+            </nav>
+            <nav class="menu">
+                <h2>Price </h2>
+                <!-- Title for menuset 2 -->
+                <hr>
+                <ul>
+                    <!--List of links under menuset 2 -->
+                    <li><a href="#" title="Link">Link 1</a></li>
+                    <li><a href="#" title="Link">Link 2</a></li>
+                    <li><a href="#" title="Link">Link 3</a></li>
+                    <li class="notimp"><!-- notimp class is applied to remove this link from the tablet and phone views --><a href="#" title="Link">Link 4</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <section class="mainContent">
+
+        <div class="productRow"><!-- Each product row contains info of 3 elements -->
+            <article class="productInfo"><!-- Each individual product description -->
+                <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
+                <p class="price">$50</p>
+                <p class="productContent">Content holder </p>
+                <input type="button" name="button" value="Buy" class="buyButton">
+            </article>
+            <article class="productInfo"><!-- Each individual product description -->
+                <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
+                <p class="price">$50</p>
+                <p class="productContent">Content holder</p>
+                <input type="button" name="button" value="Buy" class="buyButton">
+            </article>
+            <article class="productInfo"> <!-- Each individual product description -->
+                <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
+                <p class="price">$50</p>
+                <p class="productContent">Content holder</p>
+                <input type="button" name="button" value="Buy" class="buyButton">
+            </article>
+        </div>
+        <div class="productRow">
+            <!-- Each product row contains info of 3 elements -->
+            <article class="productInfo"> <!-- Each individual product description -->
+                <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
+                <p class="price">$50</p>
+                <p class="productContent">Content holder</p>
+                <input type="button" name="button" value="Buy" class="buyButton">
+            </article>
+            <article class="productInfo"> <!-- Each individual product description -->
+                <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
+                <p class="price">$50</p>
+                <p class="productContent">Content holder</p>
+                <input type="button" name="button" value="Buy" class="buyButton">
+            </article>
+            <article class="productInfo"><!-- Each individual product description -->
+                <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
+                <p class="price">$50</p>
+                <p class="productContent">Content holder</p>
+                <input type="button" name="button" value="Buy" class="buyButton">
+            </article>
+        </div>
+        <div class="productRow">
+            <article class="productInfo"> <!-- Each individual product description -->
+                <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
+                <p class="price">$50</p>
+                <p class="productContent">Content holder</p>
+                <input type="button" name="button" value="Buy" class="buyButton">
+            </article>
+            <article class="productInfo"><!-- Each individual product description -->
+                <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
+                <p class="price">$50</p>
+                <p class="productContent">Content holder</p>
+                <input type="button" name="button" value="Buy" class="buyButton">
+            </article>
+            <article class="productInfo"><!-- Each individual product description -->
+                <div><img alt="sample" src="eCommerceAssets/images/200x200.png"></div>
+                <p class="price">$50</p>
+                <p class="productContent">Content holder</p>
+                <input type="button" name="button" value="Buy" class="buyButton">
+            </article>
+        </div>
+    </section>
+</div>
+    {# body end #}
+
+{% endblock %}
