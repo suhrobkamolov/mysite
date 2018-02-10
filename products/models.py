@@ -27,17 +27,22 @@ class Category(models.Model):
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
     status = MultiSelectField(choices=STATUS_CHOICES)
     description = models.TextField()
+    meta_keywords = models.CharField("Meta Keywords", max_length=255, help_text='Comma-delimited set of SEO keywords for meta tag')
+    meta_description = models.CharField("Meta Description", max_length=255, help_text='Content for description meta tag')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
 
     class Meta:
-        ordering = ('title', )
-        verbose_name = 'category'
-        verbose_name_plural = 'categories'
+        ordering = ['-created_at']
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('shop:product_list_by_category', args=[self.slug])
+        return reverse('products:product_list_by_category', args=[self.slug])
 
 
 class Usage(models.Model):
@@ -63,7 +68,7 @@ class Brands(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ManyToManyField(Category)
     name = models.CharField(max_length=140)
     slug = models.SlugField(unique=True)
     thumb_url = models.CharField(max_length=500, null=True, blank=True)
@@ -72,12 +77,20 @@ class Product(models.Model):
     usage_area = models.ForeignKey(Usage, on_delete=models.SET_NULL, null=True, blank=True)
     brand = models.ForeignKey(Brands, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=12, decimal_places=2)
+    old_price = models.DecimalField(max_digits=12, decimal_places=2, blank=True, default=0.00)
     currency = models.CharField(max_length=5, choices=CURRENCY_CHOICES, default='TJS')
-    is_published = models.BooleanField(default=False)
     in_stock = models.PositiveIntegerField(default=1)
-    is_favorite = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    sku = models.CharField(max_length=50, blank=True)
+    is_bestseller = models.BooleanField(default=False)
+    is_published = models.BooleanField(default=False)
+    is_favorite = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=False)
+    meta_keywords = models.CharField("Meta Keywords", max_length=255,
+                                     help_text='Comma-delimited set of SEO keywords for meta tag')
+    meta_description = models.CharField("Meta Description", max_length=255,
+                                        help_text='Content for description meta tag')
 
     class Meta:
         ordering = ('-created',)
@@ -87,7 +100,13 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('shop:product_detail', args=[self.id, self.slug])
+        return reverse('products:product_detail', args=[self.slug])
+
+    def sale_price(self):
+        if self.old_price > self.price:
+            return self.price
+        else:
+            return None
 
 
 class ProductImage(models.Model):

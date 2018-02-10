@@ -1,90 +1,109 @@
 {% extends "personal/base.html" %}
+{% block head_title %}{{ category.title }}{% endblock %}
 {% block content %}
-    {% load staticfiles %}
+    <div class="container">
+        {# offer section #}
+        <section id="offer">
+        <!-- The offer section displays a banner text for promotions -->
+        <h2>OFFER 50%</h2>
+        <p>REALLY AWESOME DISCOUNTS THIS JULY</p>
+        </section>
+        {# offer section end #}
 
-    {# offer section #}
-    <section id="offer">
-    <!-- The offer section displays a banner text for promotions -->
-    <h2>OFFER 50%</h2>
-    <p>REALLY AWESOME DISCOUNTS THIS JULY</p>
-    </section>
-    {# offer section end #}
+        {# body #}
+        <div id="content">
+        {# side navbar #}
+        <section class="sidebar">
+            <!-- This adds a sidebar with 1 searchbox,2 menusets, each with 4 links -->
+            <input type="text"  id="search" value="search">
+            <div id="menubar">
+                <nav class="menu">
+                    <h2>Brands </h2>
+                    <hr>
+                    <ul>
+                        <!-- List of links under menuset 1 -->
+                        <li><a href="#" title="Link">Link 1</a></li>
+                        <li><a href="#" title="Link">Link 2</a></li>
+                        <li><a href="#" title="Link">Link 3</a></li>
+                        <li class="notimp"><!-- notimp class is applied to remove this link from the tablet and phone views --><a href="#"  title="Link">Link 4</a></li>
+                    </ul>
+                </nav>
+                <nav class="menu">
+                    <h2>Category </h2>
+                    <!-- Title for menuset 2 -->
+                    <hr>
+                    <ul>
+                        <!--List of links under menuset 2 -->
+                        <li><a href="#" title="Link">Link 1</a></li>
+                        <li><a href="#" title="Link">Link 2</a></li>
+                        <li><a href="#" title="Link">Link 3</a></li>
+                        <li class="notimp"><!-- notimp class is applied to remove this link from the tablet and phone views --><a href="#" title="Link">Link 4</a></li>
+                    </ul>
+                </nav>
+                <nav class="menu">
+                    <h2>Usage Area </h2>
+                    <!-- Title for menuset 2 -->
+                    <hr>
+                    <ul>
+                        <!--List of links under menuset 2 -->
+                        <li><a href="#" title="Link">Link 1</a></li>
+                        <li><a href="#" title="Link">Link 2</a></li>
+                        <li><a href="#" title="Link">Link 3</a></li>
+                        <li class="notimp"><!-- notimp class is applied to remove this link from the tablet and phone views --><a href="#" title="Link">Link 4</a></li>
+                    </ul>
+                </nav>
+                <nav class="menu">
+                    <h2>Price </h2>
+                    <!-- Title for menuset 2 -->
+                    <hr>
+                    <ul>
+                        <!--List of links under menuset 2 -->
+                        <li><a href="#" title="Link">Link 1</a></li>
+                        <li><a href="#" title="Link">Link 2</a></li>
+                        <li><a href="#" title="Link">Link 3</a></li>
+                        <li class="notimp"><!-- notimp class is applied to remove this link from the tablet and phone views --><a href="#" title="Link">Link 4</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+        {# side navbar end #}
 
-    {# body #}
-    <div id="content">
-    {# side navbar #}
-    <section class="sidebar">
-        <!-- This adds a sidebar with 1 searchbox,2 menusets, each with 4 links -->
-        <input type="text"  id="search" value="search">
-        <div id="menubar">
-            <nav class="menu">
-                <h2>Brands </h2>
-                <hr>
-                <ul>
-                    <!-- List of links under menuset 1 -->
-                    <li><a href="#" title="Link">Link 1</a></li>
-                    <li><a href="#" title="Link">Link 2</a></li>
-                    <li><a href="#" title="Link">Link 3</a></li>
-                    <li class="notimp"><!-- notimp class is applied to remove this link from the tablet and phone views --><a href="#"  title="Link">Link 4</a></li>
-                </ul>
-            </nav>
-            <nav class="menu">
-                <h2>Category </h2>
-                <!-- Title for menuset 2 -->
-                <hr>
-                <ul>
-                    <!--List of links under menuset 2 -->
-                    <li><a href="#" title="Link">Link 1</a></li>
-                    <li><a href="#" title="Link">Link 2</a></li>
-                    <li><a href="#" title="Link">Link 3</a></li>
-                    <li class="notimp"><!-- notimp class is applied to remove this link from the tablet and phone views --><a href="#" title="Link">Link 4</a></li>
-                </ul>
-            </nav>
-            <nav class="menu">
-                <h2>Usage Area </h2>
-                <!-- Title for menuset 2 -->
-                <hr>
-                <ul>
-                    <!--List of links under menuset 2 -->
-                    <li><a href="#" title="Link">Link 1</a></li>
-                    <li><a href="#" title="Link">Link 2</a></li>
-                    <li><a href="#" title="Link">Link 3</a></li>
-                    <li class="notimp"><!-- notimp class is applied to remove this link from the tablet and phone views --><a href="#" title="Link">Link 4</a></li>
-                </ul>
-            </nav>
-            <nav class="menu">
-                <h2>Price </h2>
-                <!-- Title for menuset 2 -->
-                <hr>
-                <ul>
-                    <!--List of links under menuset 2 -->
-                    <li><a href="#" title="Link">Link 1</a></li>
-                    <li><a href="#" title="Link">Link 2</a></li>
-                    <li><a href="#" title="Link">Link 3</a></li>
-                    <li class="notimp"><!-- notimp class is applied to remove this link from the tablet and phone views --><a href="#" title="Link">Link 4</a></li>
-                </ul>
-            </nav>
-        </div>
-    </section>
-    {# side navbar end #}
-
-    {# product content #}
-    <section class="mainContent">
-        <div class="productRow"><!-- Each product row contains info of 3 elements -->
-            {% for i in object_list %}
-                {% if i.is_published %}
-            <article class="productInfo"><!-- Each individual product description -->
-                <div><img alt="sample" src="{{ i.thumb_url }}"></div>
-                <p class="price">{{ i.price }} {{ i.currency }}</p>
-                <p class="productContent">{{ i.description }}</p>
-                <input type="button" name="button" value="Buy" class="buyButton">
-            </article>
+        {# product content #}
+        <section class="mainContent">
+            <div class="productRow"><!-- Each product row contains info of 3 elements -->
+                {% if products|length == 0 %}
+                    <div>
+                        <h1 style="text-align: center; font-size: 18px; font-weight: bold; color: darkblue;"> There is no fcking products to show!! </h1>
+                        <p>Agar dar yagonjo yagon poshii mahqul didai va bisyor mexohi ki bixari, tu dar joi lozimiat hasti.
+                            Tugmai zerinro paxw kun va mahsuloti mexostagiatro ba mo fahmon. Mo kuwiw mekunem ki dar muhlati kutoh dastrasat namoem. </p>
+                        <a href="#" class="btn btn-success btn-lg">ORDER</a>
+                    </div>
                 {% endif %}
-            {% endfor %}
+                {% for i in products %}
+                    {% if i.is_published %}
+                        <div class="thumbnail prthumb"> <a href="{{ i.get_absolute_url }}"><img src="{{ i.thumb_url }}" alt="sample" class="cards"/></a>
+                            <a href="{{ i.get_absolute_url }}"><p class="productContent">{{ i.description }}</p></a>
+                            <p class="price">{{ i.price }} {{ i.currency }}</p>
+                            <input href="{{ i.get_absolute_url }}" type="button" name="button" value="Buy" class="buyButton">
+                            <div class="row">
+                                <div class="col-xs-4 col-xs-offset-2">
+                                    <a href="#"><img src="https://res.cloudinary.com/mehvar/image/upload/v1514207358/logo/facebook_hp9iu6.ico" alt=""  class="cards"/></a>
+                                </div>
+                                <div class="col-xs-4">
+                                    <a href="#"><img src="https://res.cloudinary.com/mehvar/image/upload/v1514207358/logo/instagram_nrylpa.png" alt=""  class="cards"/></a>
+                                </div>
+                                <div class="col-xs-4">
+                                    <a href="#"><img src="" alt=""  class="cards"/></a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </section>
+        {# product content end #}
         </div>
-    </section>
-    {# product content end #}
+        {# body end #}
     </div>
-    {# body end #}
 
 {% endblock %}

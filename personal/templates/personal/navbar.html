@@ -1,0 +1,271 @@
+{# Navbar #}
+<div class="pos-f-t">
+    <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark p-4">
+            <h4 class="text-white">Collapsed content</h4>
+            <span class="text-muted">Toggleable via the navbar brand.</span>
+        </div>
+    </div>
+        <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a class="menuicon navbar-brand" id="menu-toggle" style="margin-left: 15px; margin-right: 10px"><span class="line"></span></a>
+                <a class="navbar-brand" href="{% url 'index' %}">MEHVAR CO</a> </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav parent">
+                    {% url 'index' as index %}
+                    {% url 'about' as about %}
+                    {% url 'contact' as contact %}
+                    <li {% if request.path == index %}  {% endif %} ><a href="#">Shipping</a> </li>
+                    <li {% if request.path == contact %} class="active" {% endif %} ><a href="{% url 'contact' %}">Contact</a> </li>
+                    <li {% if request.path == about %} class="active" {% endif %} ><a href="{% url 'about' %}">About</a> </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if not request.user.is_authenticated %}
+                        <li><a href="{% url 'account_signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    {% else %}
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{ user.username }}</a></li>
+                        <li><a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    {% endif %}
+                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"> Empty </span></a></li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control searchbox" placeholder="What are you looking for?">
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+        <div>
+    </div>
+</div>
+
+<!-- second nav -->
+<ul class="nav2">
+    <li><a href="#">Woman</a>
+        <div class="submenu">
+            <ul class="submenulists">
+                <h3>CLOTHING</h3>
+                <li><a href="#">Dresses</a></li>
+                <li><a href="#">Tops & Tees</a></li>
+                <li><a href="#">Skirts</a></li>
+                <li><a href="#">Jackets & Coats</a></li>
+                <li><a href="#">Pants & Capris</a></li>
+                <li><a href="#">Sweaters</a></li>
+            </ul>
+
+            <ul class="submenulists">
+                <h3>SHOES</h3>
+                <li><a href="#">Sneakers</a></li>
+                <li><a href="#">Sport Shoes</a></li>
+                <li><a href="#">Pumps</a></li>
+                <li><a href="#">Formal Shoes</a></li>
+                <li><a href="#">Sandals & Slippers</a></li>
+                <li><a href="#">Boots</a></li>
+            </ul>
+
+            <ul class="submenulists">
+                <h3>ACCESSORIES</h3>
+                <li><a href="#">Watches</a></li>
+                <li><a href="#">Bags</a></li>
+                <li><a href="#">Wallets & Cardholders</a></li>
+                <li><a href="#">Sunglasses</a></li>
+                <li><a href="#">Jewelery</a></li>
+                <li><a href="#">Other Accessories</a></li>
+            </ul>
+            <ul class="submenulists">
+                <h3>OTHERS</h3>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">6</a></li>
+            </ul>
+        </div>
+    </li>
+    <li><a href="#">Man</a>
+        <div class="submenu">
+            <ul class="submenulists">
+                <h3>CLOTHING</h3>
+                <li><a href="#">T-shirts</a></li>
+                <li><a href="#">Trousers & Sweatpants</a></li>
+                <li><a href="#">Jeans</a></li>
+                <li><a href="#">Jackets</a></li>
+                <li><a href="#">Hoodies</a></li>
+                <li><a href="#">Eastern Wear</a></li>
+            </ul>
+
+            <ul class="submenulists">
+                <h3>SHOES</h3>
+                {% for i in categories %}
+                    {% if i.title == "Sneakers" %}
+                <li><a href="{{ i.get_absolute_url }}">Sneakers</a></li>
+                    {% elif i.title == "Sport Shoes" %}
+                <li><a href="{{ i.get_absolute_url }}">Sport Shoes</a></li>
+                    {% elif i.title == "Loafer & Casual Shoes" %}
+                <li><a href="{{ i.get_absolute_url }}">Loafer & Casual Shoes</a></li>
+                    {% elif i.title == "Formal Shoes" %}
+                <li><a href="{{ i.get_absolute_url }}">Formal Shoes</a></li>
+                    {% elif i.title == "Sandals & Slippers" %}
+                <li><a href="{{ i.get_absolute_url }}">Sandals & Slippers</a></li>
+                    {% elif i.title == "Boots-man" %}
+                <li><a href="{{ i.get_absolute_url }}">Boots</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+            <ul class="submenulists">
+                <h3>ACCESSORIES</h3>
+                <li><a href="#">Watches</a></li>
+                <li><a href="#">Bags</a></li>
+                <li><a href="#">Wallets & Cardholders</a></li>
+                <li><a href="#">Sunglasses</a></li>
+                <li><a href="#">Jewelery</a></li>
+                <li><a href="#">Other Accessories</a></li>
+            </ul>
+            <ul class="submenulists">
+                <h3>OTHERS</h3>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">6</a></li>
+            </ul>
+        </div>
+    </li>
+    <li><a href="#">Children</a>
+        <div class="submenu">
+            <ul class="submenulists">
+                <h3>CLOTHING</h3>
+                <li><a href="#">T-shirts</a></li>
+                <li><a href="#">Trousers & Sweatpants</a></li>
+                <li><a href="#">Jeans</a></li>
+                <li><a href="#">Jackets</a></li>
+                <li><a href="#">Hoodies</a></li>
+                <li><a href="#">Eastern Wear</a></li>
+            </ul>
+
+            <ul class="submenulists">
+                <h3>SHOES</h3>
+                <li><a href="#">Sneakers</a></li>
+                <li><a href="#">Sport Shoes</a></li>
+                <li><a href="#">Loafer & Casual Shoes</a></li>
+                <li><a href="#">Formal Shoes</a></li>
+                <li><a href="#">Sandals & Slippers</a></li>
+                <li><a href="#">Boots</a></li>
+            </ul>
+
+            <ul class="submenulists">
+                <h3>ACCESSORIES</h3>
+                <li><a href="#">Watches</a></li>
+                <li><a href="#">Bags</a></li>
+                <li><a href="#">Wallets & Cardholders</a></li>
+                <li><a href="#">Sunglasses</a></li>
+                <li><a href="#">Jewelery</a></li>
+                <li><a href="#">Other Accessories</a></li>
+            </ul>
+            <ul class="submenulists">
+                <h3>OTHERS</h3>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">6</a></li>
+            </ul>
+        </div>
+    </li>
+    <li><a href="#">Phones</a></li>
+    <li><a href="#">Computers</a></li>
+    <li><a href="#">Appliances</a></li>
+    <li><a href="#">Sports</a></li>
+    <li><a href="#">Furnitures</a></li>
+    <li><a href="#">Gifts</a></li>
+    <li><a href="#">Others</a></li>
+</ul>
+
+<style>
+    .nav2{
+        background: #222222;
+        height: 40px;
+        padding: 0px 10px 0px;
+        margin: -20px 0 10px 0;
+        text-align: center;
+    }
+    .nav2 li{
+        list-style-type: none;
+    }
+    .nav2 li a{
+        text-decoration: none;
+        text-transform: uppercase;
+        float: left;
+        margin-right: 0px;
+        color: #fff;
+        padding: 10px 2.5%;
+    }
+    .nav2 li:hover a{
+        color: #d7d7d7;
+        background: #fff;
+    }
+    .active{
+        color: #d7d7d7;
+        background: #fff;
+    }
+    .submenu{
+        position: absolute;
+        width: 100%;
+        margin-left: -10px;
+        margin-top: 40px;
+        padding: 10px;
+        height: 320px;
+        color: #1e1e1b;
+        background: #ffffff;
+        border: 1px solid #e2e2e2;
+        display: none;
+    }
+    .submenu h3{
+        padding-left: 15px;
+    }
+    .submenulists{
+        width: 25%;
+        float: left;
+    }
+    .submenulists li a{
+        float: none;
+        display: block;
+    }
+    .nav2 li:hover .submenulists li a{
+        background: #ffffff;
+        color: #444;
+    }
+    .nav2 li .submenulists li:hover a{
+        color: #d7d7d7;
+        font-weight: bold;
+    }
+    .nav2 li:hover .submenu{
+        display: block;
+        z-index: 1000;
+    }
+    @media only screen and (min-width : 1065px) and (max-width : 1270px) {
+        .nav2 li a{
+            padding: 10px 2%;
+        }
+    }
+    @media only screen and (min-width : 480px) and (max-width : 1065px) {
+        .nav2 li a{
+            padding: 10px 1%;
+            font-size: 12px;
+        }
+    }
+</style>

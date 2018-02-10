@@ -12,13 +12,15 @@ def prhome(request):
     return render(request, 'products/allproducts.html', context)
 
 
-def product(request, id=None):
+def product(request, id=None, product_slug=None):
+    product = None
+    products = Product.objects.all()
     instance = get_object_or_404(Product, id=id)
     context = {
        'title': instance.name,
        'instance': instance,
     }
-    return render(request, 'products/detail.html', context)
+    return render(request, 'products/detail_view.html', context)
 
 
 def product_list(request, category_slug=None):
@@ -28,14 +30,23 @@ def product_list(request, category_slug=None):
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
-    return render(request, 'products/allproducts.html', {'category': category,
-                                                    'categories': categories,
-                                                    'products': products})
+        page_title = category.title
+        meta_keywords = category.meta_keywords
+        meta_description = category.meta_description
+    context = {
+        'category': category,
+        'categories': categories,
+        'products': products
+    }
+    return render(request, 'products/allproducts.html', context, locals())
 
 
-def product_detail(request, id, slug):
-    products = get_object_or_404(Product, id=id, slug=slug, is_published=True)
-    cart_product_form = CartAddProductForm()
-    return render(request, 'products/detail.html', {'product': product,
-                                                    'cart_product_form': cart_product_form})
+def product_detail(request, slug):
+    products = get_object_or_404(Product, slug=slug, is_published=True)
+    page_title = products.name
+    meta_keywords = products.meta_keywords
+    meta_description = products.meta_description
+    #cart_product_form = CartAddProductForm()
+    return render(request, 'products/detail_view.html', {'product': product}, locals())
+
 

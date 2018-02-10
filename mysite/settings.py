@@ -10,16 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
+import ast
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp@gmail.com'
+EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'mehvarcompany@gmail.com'
 EMAIL_HOST_PASSWORD = 'Mehvar2018'
 EMAIL_PORT = '587'
-EMAIL_USE_TLS = True
-
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
@@ -44,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # build in apps
+    'versatileimagefield',
+    'products',
     'personal',
     'contact',
     'crispy_forms',
@@ -53,9 +57,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'checkout',
     'stripe',
+    'utils',
 
     'man',
-    'products',
+    'products.templatetags',
     'blog',
 
 ]
@@ -142,6 +147,17 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_NAME = 'MEHVAR COMPANY'
+META_KEYWORDS = ' E-Commerce, men clothes, woman clothes, '
+META_DESCRIPTION = 'Mehvar CO is modern e-commerce website in Tajikistan '
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'mysite.utils.context_processors.ecomstore',)
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
@@ -189,3 +205,29 @@ STRIPE_SECRET_KEY = 'sk_test_SSQ1yYd46dWxsqypV3c81D2G'
 # live stuff
 # STRIPE_PUBLISHABLE_KEY = ''
 # STRIPE_SECRET_KEY = ''
+
+VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
+    'defaults': [
+        ('product_gallery', 'crop__540x540'),
+        ('product_gallery_2x', 'crop__1080x1080'),
+        ('product_small', 'crop__60x60'),
+        ('product_small_2x', 'crop__120x120'),
+        ('product_list', 'crop__255x255'),
+        ('product_list_2x', 'crop__510x510')]}
+
+
+VERSATILEIMAGEFIELD_SETTINGS = {
+    # Images should be pre-generated on Production environment
+    'create_images_on_demand': ast.literal_eval(
+        os.environ.get('CREATE_IMAGES_ON_DEMAND', 'True')),
+}
+
+PLACEHOLDER_IMAGES = {
+    60: 'images/placeholder60x60.png',
+    120: 'images/placeholder120x120.png',
+    255: 'images/placeholder255x255.png',
+    540: 'images/placeholder540x540.png',
+    1080: 'images/placeholder1080x1080.png'
+}
+
+DEFAULT_PLACEHOLDER = 'images/placeholder255x255.png'

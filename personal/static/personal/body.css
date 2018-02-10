@@ -1,46 +1,68 @@
 body {
-    background-image: url("wallpaper.png");
+    /**background-image: url("wallpaper.png");**/
     background-repeat: repeat-y;
-    background-color: #cccccc;
+    background-color: #ffffff;
     font-family: "Lato", sans-serif;
     transition: background-color .5s;
-}
-
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
     overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
 }
 
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
+.menuicon {
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    color: #5f5f5f;
+    font-weight: bold;
+    display: inline-block;
+    background-image: linear-gradient(rgb(255, 255, 255), rgb(240, 240, 240));
+    width: 60px;
+    height: 50px;
+    padding: 12px 0 0 0;
+    box-sizing: border-box;
+}
+
+.menuicon:hover {
+    background-image: linear-gradient(#e63d44,#c11a22);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.22);
+}
+
+.menuicon .line {
+    background: rgb(184,184,184);
+    border-radius: 2px;
+    box-shadow: 0 5px 0 0 rgb(184, 184, 184), 0 -5px 0 0 rgb(184, 184, 184);
     display: block;
-    transition: 0.3s;
+    margin: 10px auto 0 auto;
+    height: 3px;
+    width: 30px;
+    content: " ";
+    overflow: visible;
 }
 
-.sidenav a:hover {
-    color: #f1f1f1;
+.menuicon:hover .line {
+    background: rgb(255,255,255);
+    box-shadow: 0 5px 0 0 rgb(255,255,255), 0 -5px 0 0 rgb(255,255,255);
 }
 
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+
+.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: 0;
+    margin-right: 0;
 }
 
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+@media screen and (max-width:1275px) {
+    .searchbox{
+        width:330px !important;
+    }
+}
+@media screen and (min-width:1275px) {
+    .searchbox{
+        width: 430px !important;
+    }
+}
+@media screen and (max-width:1160px) {
+    .searchbox{
+        width:500px !important;
+        position: inherit;
+    }
 }
